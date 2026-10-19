@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Search World</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #202124;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Top Header */
+        header {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 15px 30px;
+            gap: 20px;
+            font-size: 14px;
+        }
+
+        header a {
+            color: #202124;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        header a:hover {
+            text-decoration: underline;
+        }
+
+        /* Main Container */
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* Logo Branding */
+        .logo {
+            font-size: 5rem;
+            font-weight: bold;
+            letter-spacing: -2px;
+            margin-bottom: 25px;
+            user-select: none;
+        }
+
+        .logo span:nth-child(1) { color: #4285F4; } /* M */
+        .logo span:nth-child(2) { color: #EA4335; } /* y */
+        .logo span:nth-child(3) { color: #FBBC05; } /* S */
+        .logo span:nth-child(4) { color: #4285F4; } /* e */
+        .logo span:nth-child(5) { color: #34A853; } /* a */
+        .logo span:nth-child(6) { color: #EA4335; } /* r */
+        .logo span:nth-child(7) { color: #4285F4; } /* c */
+        .logo span:nth-child(8) { color: #FBBC05; } /* h */
+
+        /* Search Box */
+        .search-container {
+            width: 100%;
+            max-width: 584px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            height: 46px;
+            padding: 0 16px;
+            border: 1px solid #dfe1e5;
+            border-radius: 24px;
+            box-shadow: none;
+            transition: box-shadow 0.2s ease-in-out;
+        }
+
+        .search-box:hover, .search-box:focus-within {
+            box-shadow: 0 1px 6px rgba(32,33,36,0.28);
+            border-color: rgba(223,225,229,0);
+        }
+
+        .search-icon {
+            color: #9aa0a6;
+            margin-right: 12px;
+            font-size: 18px;
+        }
+
+        .search-box input {
+            flex: 1;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            background: transparent;
+        }
+
+        /* Buttons */
+        .button-group {
+            margin-top: 25px;
+            display: flex;
+            gap: 12px;
+        }
+
+        .button-group button {
+            background-color: #f8f9fa;
+            border: 1px solid #f8f9fa;
+            border-radius: 4px;
+            color: #3c4043;
+            font-size: 14px;
+            padding: 10px 16px;
+            cursor: pointer;
+            transition: border-color 0.15s, box-shadow 0.15s;
+        }
+
+        .button-group button:hover {
+            border-color: #dadce0;
+            box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+            color: #202124;
+        }
+
+        /* Video Section */
+        .video-section {
+            width: 100%;
+            max-width: 680px;
+            margin-top: 40px;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            background-color: #fafafa;
+            text-align: center;
+        }
+
+        .video-section h2 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #3c4043;
+        }
+
+        .video-input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .video-input-group input {
+            flex: 1;
+            padding: 10px 14px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .video-input-group button {
+            background-color: #1a73e8;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 18px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .video-input-group button:hover {
+            background-color: #1557b0;
+        }
+
+        .media-container {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #000;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        video, iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Footer */
+        footer {
+            background: #f2f2f2;
+            color: #70757a;
+            font-size: 14px;
+            text-align: center;
+            padding: 15px;
+            border-top: 1px solid #e4e4e4;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#video-area">Videos</a>
+        <a href="https://www.google.com" target="_blank">Google Direct</a>
+    </header>
+
+    <main>
+        <!-- Logo -->
+        <div class="logo">
+            <span>M</span><span>y</span><span> </span><span>S</span><span>e</span><span>a</span><span>r</span><span>c</span><span>h</span>
+        </div>
+
+        <!-- Search Form -->
+        <div class="search-container">
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="searchInput" placeholder="Search the web or type a URL..." onkeydown="checkEnter(event)">
+            </div>
+            <div class="button-group">
+                <button onclick="performSearch()">My Search</button>
+                <button onclick="feelingLucky()">I'm Feeling Lucky</button>
+            </div>
+        </div>
+
+        <!-- Video Player Section -->
+        <section class="video-section" id="video-area">
+            <h2>Play Any Video</h2>
+            <div class="video-input-group">
+                <input type="text" id="videoUrlInput" placeholder="Paste YouTube link or direct video URL (.mp4)...">
+                <button onclick="loadVideo()">Play</button>
+            </div>
+            <div class="media-container" id="mediaContainer">
+                <p style="color: #888;">Enter a URL above and click Play to start streaming.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        © 2026 My Search World | Created with HTML, CSS, and JavaScript
+    </footer>
+
+    <script>
+        // Key listener for Search box
+        function checkEnter(event) {
+            if (event.key === 'Enter') {
+                performSearch();
+            }
+        }
+
+        // Search Function
+        function performSearch() {
+            const query = document.getElementById('searchInput').value.trim();
+            if (query !== "") {
+                const searchUrl = "https://www.google.com/search?q=" + encodeURIComponent(query);
+                window.open(searchUrl, '_blank');
+            }
+        }
+
+        // I'm Feeling Lucky Redirect
+        function feelingLucky() {
+            const query = document.getElementById('searchInput').value.trim();
+            if (query !== "") {
+                const luckyUrl = "https://www.google.com/search?btnI=1&q=" + encodeURIComponent(query);
+                window.open(luckyUrl, '_blank');
+            }
+        }
+
+        // Video Player Loader
+        function loadVideo() {
+            const url = document.getElementById('videoUrlInput').value.trim();
+            const container = document.getElementById('mediaContainer');
+
+            if (!url) {
+                alert("Please enter a valid video link.");
+                return;
+            }
+
+            container.innerHTML = ""; // Clear current video/iframe
+
+            // Handle YouTube Links
+            if (url.includes("youtube.com") || url.includes("youtu.be")) {
+                let videoId = "";
+                if (url.includes("youtu.be")) {
+                    videoId = url.split("/").pop().split("?")[0];
+                } else {
+                    const urlParams = new URLSearchParams(new URL(url).search);
+                    videoId = urlParams.get("v");
+                }
+
+                if (videoId) {
+                    const iframe = document.createElement("iframe");
+                    iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+                    iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+                    iframe.allowFullscreen = true;
+                    container.appendChild(iframe);
+                } else {
+                    alert("Invalid YouTube URL.");
+                }
+            } 
+            // Handle Direct MP4/WebM Video Files
+            else {
+                const video = document.createElement("video");
+                video.src = url;
+                video.controls = true;
+                video.autoplay = true;
+                video.onerror = function() {
+                    alert("Failed to load video file. Ensure it is a direct video link (.mp4, .webm).");
+                };
+                container.appendChild(video);
+            }
+        }
+    </script>
+</body>
+</html>
